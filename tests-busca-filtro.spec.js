@@ -134,17 +134,6 @@ test('Fluxo de Busca com Ciclos Independentes de Filtro', async ({ page }) => {
           logAction(`Adicionando o filtro: [${optionText}]`);
           await optionLabel.click({ force: true });
           
-          logAction(`Procurando botão Filtrar da sidebar (se existir)...`);
-          // Botão genérico caso o sistema peça submissão manual
-          const filterBtn = page.locator('button.filter-button:visible, .smarthint-filter-apply:visible').first();
-          if (await filterBtn.isVisible().catch(() => false)) {
-            await filterBtn.click({ force: true });
-          }
-
-          // Aguarda página reagir aos filtros aplicados
-          await page.waitForLoadState('load');
-          await page.waitForTimeout(4000); 
-
           // VALIDAÇÃO CHAVE: Prevenir o silent-redirect da home e testar se filtros romperam a interface de busca.
           logAction(`URL após aplicar filtro: ${page.url()}`);
           expect(page.url()).not.toBe('https://www.futfanatics.com.br/');
@@ -177,12 +166,6 @@ test('Fluxo de Busca com Ciclos Independentes de Filtro', async ({ page }) => {
 
           await clearLabel.click({ force: true });
 
-          // Em alguns layouts, o botão filtrar precisa ser re-pressionado
-          const filterBtnClear = page.locator('button.filter-button:visible, .smarthint-filter-apply:visible').first();
-          if (await filterBtnClear.isVisible().catch(() => false)) {
-            await filterBtnClear.click({ force: true });
-          }
-
           // Espera o UI reagir e a URL ser limpa para a próxima iteração
           await page.waitForLoadState('load');
           await page.waitForTimeout(4000);
@@ -195,4 +178,8 @@ test('Fluxo de Busca com Ciclos Independentes de Filtro', async ({ page }) => {
       }
     });
   }
+
+  // Espera final para garantir que o vídeo capture o encerramento do teste com clareza
+  logAction('Fim do teste. Aguardando 5 segundos para conclusão do vídeo...');
+  await page.waitForTimeout(5000);
 });
