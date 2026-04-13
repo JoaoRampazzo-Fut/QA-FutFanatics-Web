@@ -1,0 +1,138 @@
+{
+  "config": {
+    "rootDir": "C:/wamp64/www/Anitgravity",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/wamp64/www/Anitgravity/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/wamp64/www/Anitgravity",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 14,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "test-clubes-brasileiros.spec.js",
+      "file": "test-clubes-brasileiros.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Clubes brasileiros",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 30183,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "[LOG] Início do Teste: Clubes Brasileiros - Funcionalidade de Filtros Dinâmicos\n"
+                    },
+                    {
+                      "text": "[LOG] Ação: Tentando Navegar via Menu HTML \"Clubes Brasileiros\"\n"
+                    },
+                    {
+                      "text": "[LOG] Aviso: Menu Oculto (Viewport issue). Acionando navegação direta por fallback de Bypass\n"
+                    },
+                    {
+                      "text": "[LOG] Ação: Acesso Base à Categoria Garantido com Sucesso\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-03-30T12:46:09.878Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\wamp64\\www\\Anitgravity\\test-results\\test-clubes-brasileiros-Clubes-brasileiros\\video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\wamp64\\www\\Anitgravity\\test-results\\test-clubes-brasileiros-Clubes-brasileiros\\error-context.md"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "f72ce1aead68961bdfa2-97fd91de0a1f2bc82eb1",
+          "file": "test-clubes-brasileiros.spec.js",
+          "line": 20,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-03-30T12:46:09.221Z",
+    "duration": 31400.152000000002,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

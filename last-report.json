@@ -1,0 +1,173 @@
+{
+  "config": {
+    "rootDir": "C:/wamp64/www/Anitgravity",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/wamp64/www/Anitgravity/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/wamp64/www/Anitgravity",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 14,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests-resilient.spec.js",
+      "file": "tests-resilient.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Futfanatics - Indestructible Test Suite (ASTRAEA-9)",
+          "file": "tests-resilient.spec.js",
+          "line": 91,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Boundary Value Analysis (BVA): Last filter and last grid item",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 90170,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js",
+                            "column": 22,
+                            "line": 64
+                          },
+                          "message": "Error: locator.click: Target page, context or browser has been closed\n\n\u001b[0m \u001b[90m 62 |\u001b[39m       \u001b[36mawait\u001b[39m selected\u001b[33m.\u001b[39mscrollIntoViewIfNeeded()\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m \u001b[36mnull\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 63 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 64 |\u001b[39m       \u001b[36mawait\u001b[39m selected\u001b[33m.\u001b[39mclick({ force\u001b[33m:\u001b[39m forceClick })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 65 |\u001b[39m       \u001b[90m// Wait for Futfanatics AJAX stability (spinner/overlay)\u001b[39m\n \u001b[90m 66 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m2000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 67 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:64:22\u001b[22m\n\u001b[2m    at BasePage.selectItem (C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:47:12)\u001b[22m\n\u001b[2m    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:182:7\u001b[22m\n\u001b[2m    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:181:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate to Clubes Brasileiros",
+                          "duration": 2308
+                        },
+                        {
+                          "title": "Apply BVA: Last Region Filter",
+                          "duration": 87491,
+                          "error": {
+                            "message": "Error: locator.click: Target page, context or browser has been closed",
+                            "stack": "Error: locator.click: Target page, context or browser has been closed\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:64:22\n    at BasePage.selectItem (C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:47:12)\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:182:7\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:181:5",
+                            "location": {
+                              "file": "C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js",
+                              "column": 22,
+                              "line": 64
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 62 |\u001b[39m       \u001b[36mawait\u001b[39m selected\u001b[33m.\u001b[39mscrollIntoViewIfNeeded()\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m \u001b[36mnull\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 63 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 64 |\u001b[39m       \u001b[36mawait\u001b[39m selected\u001b[33m.\u001b[39mclick({ force\u001b[33m:\u001b[39m forceClick })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 65 |\u001b[39m       \u001b[90m// Wait for Futfanatics AJAX stability (spinner/overlay)\u001b[39m\n \u001b[90m 66 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m2000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 67 |\u001b[39m\u001b[0m"
+                          },
+                          "steps": [
+                            {
+                              "title": "Select Região (Last) (last)",
+                              "duration": 87490,
+                              "error": {
+                                "message": "Error: locator.click: Target page, context or browser has been closed",
+                                "stack": "Error: locator.click: Target page, context or browser has been closed\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:64:22\n    at BasePage.selectItem (C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:47:12)\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:182:7\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:181:5",
+                                "location": {
+                                  "file": "C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js",
+                                  "column": 22,
+                                  "line": 64
+                                },
+                                "snippet": "\u001b[0m \u001b[90m 62 |\u001b[39m       \u001b[36mawait\u001b[39m selected\u001b[33m.\u001b[39mscrollIntoViewIfNeeded()\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m \u001b[36mnull\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 63 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 64 |\u001b[39m       \u001b[36mawait\u001b[39m selected\u001b[33m.\u001b[39mclick({ force\u001b[33m:\u001b[39m forceClick })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 65 |\u001b[39m       \u001b[90m// Wait for Futfanatics AJAX stability (spinner/overlay)\u001b[39m\n \u001b[90m 66 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m2000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 67 |\u001b[39m\u001b[0m"
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "startTime": "2026-03-30T11:45:37.129Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\wamp64\\www\\Anitgravity\\test-results\\tests-resilient-Futfanatic-447ff-t-filter-and-last-grid-item\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e93f2eddbe020b5eeaef-7366acf4fb69ae5d1c40",
+              "file": "tests-resilient.spec.js",
+              "line": 172,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-03-30T11:45:36.490Z",
+    "duration": 90967.126,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

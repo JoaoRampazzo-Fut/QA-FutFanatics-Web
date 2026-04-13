@@ -1,0 +1,299 @@
+{
+  "config": {
+    "rootDir": "C:/wamp64/www/Anitgravity",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/wamp64/www/Anitgravity/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/wamp64/www/Anitgravity",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 14,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests-resilient.spec.js",
+      "file": "tests-resilient.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Futfanatics - Indestructible Test Suite (ASTRAEA-9)",
+          "file": "tests-resilient.spec.js",
+          "line": 93,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Scenario A & Scenario B: Product Variations and Accessories",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13056,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[LOG] Scenario A: Selecting Size Variation\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Search for product: bola de futebol",
+                          "duration": 4797
+                        },
+                        {
+                          "title": "Select a product from the grid",
+                          "duration": 113
+                        },
+                        {
+                          "title": "Handle Product Variations (Cyclomatic Complexity)",
+                          "duration": 6506
+                        },
+                        {
+                          "title": "Advance to Cart",
+                          "duration": 1242
+                        }
+                      ],
+                      "startTime": "2026-03-30T11:20:01.976Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e93f2eddbe020b5eeaef-0b11d6878edf16d95d2d",
+              "file": "tests-resilient.spec.js",
+              "line": 101,
+              "column": 3
+            },
+            {
+              "title": "Scenario C: Zero Results Search",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 19759,
+                      "error": {
+                        "message": "TimeoutError: locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Ops! Nenhum resultado|Nenhum produto encontrado|Não encontramos resultados/i').first() to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Ops! Nenhum resultado|Nenhum produto encontrado|Não encontramos resultados/i').first() to be visible\u001b[22m\n\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:171:36\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:168:16",
+                        "location": {
+                          "file": "C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js",
+                          "column": 36,
+                          "line": 171
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 169 |\u001b[39m       \u001b[90m// Platform-specific empty state assertion\u001b[39m\n \u001b[90m 170 |\u001b[39m       \u001b[36mconst\u001b[39m emptyStateText \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=/Ops! Nenhum resultado|Nenhum produto encontrado|Não encontramos resultados/i'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 171 |\u001b[39m       \u001b[36mawait\u001b[39m emptyStateText\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m\u001b[33m,\u001b[39m timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 172 |\u001b[39m       \u001b[36mawait\u001b[39m expect(emptyStateText\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 173 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 174 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js",
+                            "column": 36,
+                            "line": 171
+                          },
+                          "message": "TimeoutError: locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Ops! Nenhum resultado|Nenhum produto encontrado|Não encontramos resultados/i').first() to be visible\u001b[22m\n\n\n  169 |       // Platform-specific empty state assertion\n  170 |       const emptyStateText = page.locator('text=/Ops! Nenhum resultado|Nenhum produto encontrado|Não encontramos resultados/i');\n> 171 |       await emptyStateText.first().waitFor({ state: 'visible', timeout: 15000 });\n      |                                    ^\n  172 |       await expect(emptyStateText.first()).toBeVisible();\n  173 |     });\n  174 |   });\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:171:36\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:168:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Search for non-existent product",
+                          "duration": 4223,
+                          "steps": [
+                            {
+                              "title": "Search for product: qwertyuiopasdfghjkl12345",
+                              "duration": 4223
+                            }
+                          ]
+                        },
+                        {
+                          "title": "Assert \"Nenhum resultado\" message",
+                          "duration": 15007,
+                          "error": {
+                            "message": "TimeoutError: locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Ops! Nenhum resultado|Nenhum produto encontrado|Não encontramos resultados/i').first() to be visible\u001b[22m\n",
+                            "stack": "TimeoutError: locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('text=/Ops! Nenhum resultado|Nenhum produto encontrado|Não encontramos resultados/i').first() to be visible\u001b[22m\n\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:171:36\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:168:16",
+                            "location": {
+                              "file": "C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js",
+                              "column": 36,
+                              "line": 171
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 169 |\u001b[39m       \u001b[90m// Platform-specific empty state assertion\u001b[39m\n \u001b[90m 170 |\u001b[39m       \u001b[36mconst\u001b[39m emptyStateText \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=/Ops! Nenhum resultado|Nenhum produto encontrado|Não encontramos resultados/i'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 171 |\u001b[39m       \u001b[36mawait\u001b[39m emptyStateText\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m\u001b[33m,\u001b[39m timeout\u001b[33m:\u001b[39m \u001b[35m15000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 172 |\u001b[39m       \u001b[36mawait\u001b[39m expect(emptyStateText\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 173 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 174 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2026-03-30T11:20:15.099Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\wamp64\\www\\Anitgravity\\test-results\\tests-resilient-Futfanatic-4a958-nario-C-Zero-Results-Search\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js",
+                        "column": 36,
+                        "line": 171
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e93f2eddbe020b5eeaef-269c7762f7f1492b3c11",
+              "file": "tests-resilient.spec.js",
+              "line": 163,
+              "column": 3
+            },
+            {
+              "title": "Boundary Value Analysis (BVA): Last filter and last grid item",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 30134,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js",
+                            "column": 26,
+                            "line": 179
+                          },
+                          "message": "Error: locator.waitFor: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav li.parent > a[href$=\"/clubes-brasileiros\"]') to be visible\u001b[22m\n\n\n  177 |     await test.step('Navigate to Clubes Brasileiros', async () => {\n  178 |       const categoryLink = page.locator('nav li.parent > a[href$=\"/clubes-brasileiros\"]');\n> 179 |       await categoryLink.waitFor({ state: 'visible' });\n      |                          ^\n  180 |       \n  181 |       await Promise.all([\n  182 |         page.waitForLoadState('networkidle'),\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:179:26\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:177:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate to Clubes Brasileiros",
+                          "duration": 26444,
+                          "error": {
+                            "message": "Error: locator.waitFor: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav li.parent > a[href$=\"/clubes-brasileiros\"]') to be visible\u001b[22m\n",
+                            "stack": "Error: locator.waitFor: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav li.parent > a[href$=\"/clubes-brasileiros\"]') to be visible\u001b[22m\n\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:179:26\n    at C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js:177:16",
+                            "location": {
+                              "file": "C:\\wamp64\\www\\Anitgravity\\tests-resilient.spec.js",
+                              "column": 26,
+                              "line": 179
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 177 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'Navigate to Clubes Brasileiros'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m 178 |\u001b[39m       \u001b[36mconst\u001b[39m categoryLink \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'nav li.parent > a[href$=\"/clubes-brasileiros\"]'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 179 |\u001b[39m       \u001b[36mawait\u001b[39m categoryLink\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 180 |\u001b[39m       \n \u001b[90m 181 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m.\u001b[39mall([\n \u001b[90m 182 |\u001b[39m         page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m,\u001b[39m\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2026-03-30T11:20:35.624Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\wamp64\\www\\Anitgravity\\test-results\\tests-resilient-Futfanatic-447ff-t-filter-and-last-grid-item\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e93f2eddbe020b5eeaef-7366acf4fb69ae5d1c40",
+              "file": "tests-resilient.spec.js",
+              "line": 176,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-03-30T11:20:01.300Z",
+    "duration": 64609.186,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,11 @@
+FAILED: Boundary Value Analysis (BVA): Last filter and last grid item
+TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for locator('#filter-content-categories a').first() to be visible[22m
+[2m    34 × locator resolved to hidden <a href="/loja/busca.php?categoria=101-centro-oeste">Centro-Oeste</a>[22m
+
+    at C:\wamp64\www\Anitgravity\tests-resilient.spec.js:49:30
+    at BasePage.selectItem (C:\wamp64\www\Anitgravity\tests-resilient.spec.js:47:23)
+    at C:\wamp64\www\Anitgravity\tests-resilient.spec.js:182:22
+    at C:\wamp64\www\Anitgravity\tests-resilient.spec.js:181:16
+
