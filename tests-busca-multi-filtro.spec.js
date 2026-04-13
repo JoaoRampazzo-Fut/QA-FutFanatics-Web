@@ -1,4 +1,5 @@
 const { test, expect } = require('@playwright/test');
+const fs = require('fs');
 
 /**
  * Script de teste: Busca + Multi-Filtros (Até 4 simultâneos)
@@ -24,7 +25,14 @@ test('Fluxo de Multi-Filtragem (Combo de 4 filtros) na Busca', async ({ page }) 
   const termosBusca = ['chuteira', 'camisa flamengo', 'mochila', 'bola de futebol', 'luva de goleiro'];
   const termo = termosBusca[Math.floor(Math.random() * termosBusca.length)];
 
-  const logAction = (msg) => console.log(`[MULTI-FILTER LOG] - ${msg}`);
+  const logFile = 'results-multi-filtro.txt';
+  fs.writeFileSync(logFile, ''); // Limpa o arquivo no início
+
+  const logAction = (msg) => {
+    const formattedMsg = `[MULTI-FILTER LOG] - ${msg}`;
+    console.log(formattedMsg);
+    fs.appendFileSync(logFile, formattedMsg + '\n');
+  };
 
   const closePopups = async () => {
     const popupSelectors = [

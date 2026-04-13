@@ -1,0 +1,22 @@
+[MULTI-FILTER LOG] - Iniciando busca por: camisa flamengo
+[MULTI-FILTER LOG] - --- Iniciando Ciclo #1 ---
+[MULTI-FILTER LOG] - Selecionando filtro [Gênero]: Unissex
+[MULTI-FILTER LOG] - Selecionando filtro [Tamanho]: 12 ANOS
+[MULTI-FILTER LOG] - Selecionando filtro [Material]: Poliéster
+[MULTI-FILTER LOG] - URL dps de aplicar combo de filtros: https://www.futfanatics.com.br/#&search-term=camisa%20flamengo&filter=genero:unissex&filter=material:poliester&filter=tamanho:12-anos
+[MULTI-FILTER LOG] - Iniciando desmarcação de 3 filtros...
+[MULTI-FILTER LOG] - Desmarcando: Poliéster (Material)
+[MULTI-FILTER LOG] - Desmarcando: 12 ANOS (Tamanho)
+[MULTI-FILTER LOG] - Desmarcando: Unissex (Gênero)
+[MULTI-FILTER LOG] - Ciclo #1 finalizado e filtros limpos.
+[MULTI-FILTER LOG] - --- Iniciando Ciclo #2 ---
+[MULTI-FILTER LOG] - Selecionando filtro [Tipo de Produto]: Camisa
+[MULTI-FILTER LOG] - Selecionando filtro [Tamanho]: 16 ANOS
+[MULTI-FILTER LOG] - Selecionando filtro [Material]: Poliéster
+[MULTI-FILTER LOG] - URL dps de aplicar combo de filtros: https://www.futfanatics.com.br/#&&search-term=camisa%20flamengo&filter=genero:unissex&filter=tamanho:16-anos&filter=tipo-de-produto:camisa
+[MULTI-FILTER LOG] - Iniciando desmarcação de 3 filtros...
+[MULTI-FILTER LOG] - Desmarcando: Poliéster (Material)
+[MULTI-FILTER LOG] - Desmarcando: 16 ANOS (Tamanho)
+[MULTI-FILTER LOG] - Desmarcando: Camisa (Tipo de Produto)
+[MULTI-FILTER LOG] - Ciclo #2 finalizado e filtros limpos.
+[MULTI-FILTER LOG] - Fim do teste de multi-filtros. Aguardando finalização do vídeo...
