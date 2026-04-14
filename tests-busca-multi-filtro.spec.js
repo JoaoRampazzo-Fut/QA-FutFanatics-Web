@@ -22,7 +22,21 @@ test.use({
 test('Fluxo de Multi-Filtragem (Combo de 4 filtros) na Busca', async ({ page }) => {
   test.setTimeout(240000); 
 
-  const termosBusca = ['chuteira', 'camisa flamengo', 'mochila', 'bola de futebol', 'luva de goleiro'];
+   const termosBusca = [
+    // Clubes Brasileiros Populares
+    'camisa flamengo', 'camisa corinthians', 'camisa palmeiras', 'camisa sao paulo',
+    'camisa santos', 'camisa vasco da gama', 'camisa fluminense', 'camisa botafogo',
+    'camisa cruzeiro', 'camisa atletico mineiro', 'camisa gremio', 'camisa internacional',
+    'camisa bahia', 'camisa vitoria', 'camisa sport recife', 'camisa ceara',
+    'camisa fortaleza', 'camisa athletico paranaense', 'camisa coritiba',
+    
+    // Artigos Esportivos e de Treino
+    'chuteira campo', 'chuteira society', 'chuteira futsal nike', 'bola de futebol',
+    'luva de goleiro', 'caneleira', 'meiao', 'jaqueta corta vento',
+    'moletom', 'camisa de treino', 'regata esportiva', 'bermuda termica',
+    'calca de treino', 'tenis de corrida', 'mochila esportiva', 'bolsa de academia',
+    'bone', 'squeeze', 'garrafa termica', 'agasalho', 'camisa real madrid'
+  ];
   const termo = termosBusca[Math.floor(Math.random() * termosBusca.length)];
 
   const logFile = 'results-multi-filtro.txt';
