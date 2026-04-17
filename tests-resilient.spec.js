@@ -1,15 +1,22 @@
 const { test, expect } = require('@playwright/test');
 const fs = require('fs');
+const path = require('path');
 
-if (!fs.existsSync('test-results')) {
-  fs.mkdirSync('test-results');
-}
-fs.writeFileSync('test-results/execution-log.txt', '--- RELATÓRIO DE EXECUÇÃO ---\n');
+const getTimestamp = () => {
+  const now = new Date();
+  const date = now.toLocaleDateString('pt-BR').replace(/\//g, '-');
+  const time = now.toLocaleTimeString('pt-BR', { hour12: false }).replace(/:/g, '-');
+  return `${date}_${time}`;
+};
+
+const outputDir = `test-results/Resilient_Suite_${getTimestamp()}`;
 
 function logAction(action, detail) {
   const msg = `[LOG] ${action}: ${detail}\n`;
   console.log(msg.trim());
-  fs.appendFileSync('test-results/execution-log.txt', msg);
+  const logPath = path.join(outputDir, 'execution-log.txt');
+  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
+  fs.appendFileSync(logPath, msg);
 }
 
 /**
@@ -104,7 +111,8 @@ class BasePage {
 
 test.use({ 
   video: 'on',
-  launchOptions: { slowMo: 1500 }
+  launchOptions: { slowMo: 1500 },
+  outputDir: outputDir
 });
 test.describe('Futfanatics - Indestructible Test Suite (ASTRAEA-9)', () => {
   let basePage;
