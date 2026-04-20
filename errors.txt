@@ -1,9 +1,0 @@
-FAILED: Scenario C: Zero Results Search
-TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
-Call log:
-[2m  - waiting for locator('text=/Ops! Nenhum resultado|Nenhum produto encontrado|Não encontramos resultados/i').first() to be visible[22m
-
-
-FAILED: Boundary Value Analysis (BVA): Last filter and last grid item
-[31mTest timeout of 30000ms exceeded.[39m
-

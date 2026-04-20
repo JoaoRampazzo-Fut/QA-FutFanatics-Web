@@ -1,3 +1,0 @@
-Navigate to Clubes Brasileiros -> OK
-Apply BVA: Last Region Filter -> Error: locator.click: Target page, context or browser has been closed
-  - Select Região (Last) (last) -> Error: locator.click: Target page, context or browser has been closed
