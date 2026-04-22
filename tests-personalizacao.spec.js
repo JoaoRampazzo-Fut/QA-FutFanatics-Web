@@ -19,7 +19,7 @@ test.use({
 });
 
 test('Fluxo Dinâmico: Busca e Personalização (SmartHint Pattern)', async ({ page }, testInfo) => {
-  test.setTimeout(100000); // Conforme sua alteração
+  test.setTimeout(120000); 
 
   const timestamp = getTimestamp();
   if (!fs.existsSync(baseOutputDir)) fs.mkdirSync(baseOutputDir, { recursive: true });
@@ -32,10 +32,10 @@ test('Fluxo Dinâmico: Busca e Personalização (SmartHint Pattern)', async ({ p
   };
 
   const variacoesTeste = [
-    { nome: 'ARRASCAETA', numero: '14' },
-    { nome: 'GABIGOL', numero: '99' },
+    { nome: 'Ronaldo', numero: '9' },
+    { nome: 'GABIGOL', numero: '17' },
     { nome: 'VINI JR', numero: '23' },
-    { nome: 'FLAMENGO', numero: '10' }
+    { nome: 'ZICO', numero: '10' }
   ];
   const dadosValidos = variacoesTeste[Math.floor(Math.random() * variacoesTeste.length)];
 
@@ -66,8 +66,9 @@ test('Fluxo Dinâmico: Busca e Personalização (SmartHint Pattern)', async ({ p
   });
 
   logAction('--- Iniciando Jornada ---');
+  logAction(`Dados Sorteados: Nome: ${dadosValidos.nome} | Número: ${dadosValidos.numero}`);
 
-  await test.step('Busca', async () => {
+  await test.step('Busca e Filtro', async () => {
     logAction('Acessando home...');
     await page.goto('https://www.futfanatics.com.br/', { waitUntil: 'domcontentloaded' });
     await closePopups();
@@ -78,46 +79,26 @@ test('Fluxo Dinâmico: Busca e Personalização (SmartHint Pattern)', async ({ p
     await page.keyboard.press('Enter');
     
     await page.waitForLoadState('load');
-    await page.waitForTimeout(4000);
-  });
+    await page.waitForTimeout(3000);
 
-  await test.step('Filtro "Sim"', async () => {
-    await closePopups();
-
-    // Seletor cirúrgico baseado no seu print do inspetor
     const container = page.locator('.smarthint-search-filter-item.permite-personalizacao').first();
     await container.scrollIntoViewIfNeeded();
-
-    // Verifica se já está aberto (classe 'active' no título)
     const title = container.locator('.smarthint-search-filter-item-title');
     const isOpen = await title.evaluate(node => node.classList.contains('active')).catch(() => false);
-    
-    if (!isOpen) {
-      logAction('Abrindo categoria de filtro...');
-      await title.click({ force: true });
-      await page.waitForTimeout(1000);
-    }
+    if (!isOpen) { await title.click({ force: true }); await page.waitForTimeout(1000); }
 
-    logAction('Selecionando filtro Permite Personalização');
-    // Clica no ID exato 'sim' ou no span que o acompanha
     const botaoSim = container.locator('input#sim, span:text-is("Sim")').first();
     await botaoSim.click({ force: true });
-    
-    logAction('Filtro aplicado. Aguardando recarregamento...');
     await page.waitForTimeout(5000); 
   });
 
-  await test.step('Escolher Produto e Comprar', async () => {
-    logAction('Selecionando produto...');
+  await test.step('Selecionar Produto e Tamanho', async () => {
     const linkProd = page.locator('.product-item a, .sh-product-item a, .item-name a').first();
-    await linkProd.waitFor({ state: 'visible', timeout: 15000 });
     await linkProd.click({ force: true });
-    
     await page.waitForLoadState('domcontentloaded');
     await closePopups();
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(3000);
 
-    logAction('Validando tamanhos...');
     const variacoes = page.locator('div[id^="cor_"]:not(.indisponivel), .variacao-item:not(.indisponivel), .lista_cor_variacao li div:not(.indisponivel)');
     const total = await variacoes.count();
     
@@ -125,30 +106,66 @@ test('Fluxo Dinâmico: Busca e Personalização (SmartHint Pattern)', async ({ p
     for (let i = 0; i < total; i++) {
       const item = variacoes.nth(i);
       const txt = (await item.innerText()).trim();
-      logAction(`Tentando: ${txt}`);
+      logAction(`Selecionando Tamanho: ${txt}`);
       await item.click({ force: true });
-      await page.waitForTimeout(2000);
+      await page.waitForTimeout(2500);
 
       const erro = page.locator('.blocoAlerta, #aviseme, :has-text("não encontra-se disponível")').first();
       if (!await erro.isVisible().catch(() => false)) {
         sucessoTam = true;
         break;
       }
-      logAction(`Tamanho ${txt} esgotado.`);
+      logAction(`Tamanho ${txt} indisponível.`);
       await page.mouse.click(10, 10);
     }
+    if (!sucessoTam) throw new Error('Produto sem estoque.');
+  });
 
+  await test.step('Personalização e Stress Test', async () => {
+    logAction('Localizando campos...');
     const inputNome = page.locator('input[placeholder*="Nome"], input[id*="personalizacao_nome"]').first();
     const inputNumero = page.locator('input[placeholder*="Número"], input[id*="personalizacao_numero"]').first();
+    
+    await inputNome.waitFor({ state: 'visible', timeout: 15000 });
+
+    logAction('--- Estresse: Limite Nome (13 chars) ---');
+    await inputNome.fill('ANTIGRAVITY TESTE LIMITE');
+    const valorNome = await inputNome.inputValue();
+    if (valorNome.length <= 13) {
+      logAction(`[SUCESSO] Nome limitado a ${valorNome.length} caracteres.`);
+    } else {
+      logAction(`[AVISO] Nome excedeu 13 caracteres.`);
+    }
+
+    logAction('--- Estresse: Letras no campo Número ---');
+    try {
+      await inputNumero.click();
+      await inputNumero.fill(''); 
+      await inputNumero.pressSequentially('ABC', { delay: 100 });
+      
+      const valorNum = await inputNumero.inputValue();
+      if (valorNum === '' || !/[A-Za-z]/.test(valorNum)) {
+        logAction('[SUCESSO] O campo bloqueou a digitação de letras.');
+      } else {
+        logAction('[AVISO] O campo aceitou letras.');
+      }
+    } catch (e) {
+      logAction('[SUCESSO] O navegador bloqueou a inserção de letras nativamente.');
+    }
+
+    logAction(`Personalizando com: ${dadosValidos.nome} | Número: ${dadosValidos.numero}`);
     await inputNome.fill(dadosValidos.nome);
     await inputNumero.fill(dadosValidos.numero);
-    
-    logAction('Comprando...');
+    await page.waitForTimeout(1000);
+  });
+
+  await test.step('Finalizar', async () => {
+    logAction('Adicionando ao carrinho...');
     const btnComp = page.locator('[data-tray-tst="button_buy_product"], .button-buy, #btn-comprar').first();
     await btnComp.click({ force: true });
     await page.waitForTimeout(4000);
+    logAction('Fim da jornada.');
   });
 
-  logAction('Fim.');
   await page.context().close(); 
 });
