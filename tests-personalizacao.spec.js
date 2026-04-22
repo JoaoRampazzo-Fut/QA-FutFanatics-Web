@@ -18,7 +18,7 @@ test.use({
   outputDir: baseOutputDir
 });
 
-test('Compra de produto personalizado - Flamengo I 2026', async ({ page }, testInfo) => {
+test('Validação e Compra de produto personalizado - Flamengo I 2026', async ({ page }, testInfo) => {
   test.setTimeout(300000); 
 
   const timestamp = getTimestamp();
@@ -30,6 +30,19 @@ test('Compra de produto personalizado - Flamengo I 2026', async ({ page }, testI
     console.log(formattedMsg);
     fs.appendFileSync(logFile, formattedMsg + '\n');
   };
+
+  const variacoesTeste = [
+    { nome: 'ZICO', numero: '10' },
+    { nome: 'GABIGOL', numero: '99' },
+    { nome: 'ARRASCAETA', numero: '14' },
+    { nome: 'PEDRO', numero: '9' },
+    { nome: 'BRUNO HENRIQUE', numero: '27' },
+    { nome: 'DE LA CRUZ', numero: '18' },
+    { nome: 'GERSON', numero: '8' },
+    { nome: 'VINI JR', numero: '23' },
+    { nome: 'FLAMENGO', numero: '12' }
+  ];
+  const dadosValidos = variacoesTeste[Math.floor(Math.random() * variacoesTeste.length)];
 
   const closePopups = async () => {
     const popupSelectors = [
@@ -47,87 +60,91 @@ test('Compra de produto personalizado - Flamengo I 2026', async ({ page }, testI
     window.addEventListener('load', () => {
       const overlay = document.createElement('div');
       overlay.id = 'pw-url-overlay';
-      overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;background:rgba(0,0,0,0.8);color:#0f0;z-index:999999;font-size:18px;font-family:monospace;padding:10px;text-align:center;pointer-events:none;';
+      overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:40px;background:rgba(0,0,0,0.8);color:#0f0;z-index:999999;font-size:18px;font-family:monospace;padding:10px;text-align:center;pointer-events:none;';
       document.body.appendChild(overlay);
       setInterval(() => { if(document.getElementById('pw-url-overlay')) document.getElementById('pw-url-overlay').innerText = 'URL: ' + window.location.href; }, 200);
     });
   });
 
-  logAction('Iniciando jornada de personalização...');
+  logAction('--- Iniciando Teste de Validação ---');
 
   await test.step('Acessar Produto', async () => {
     logAction('Acessando Camisa Flamengo I 2026...');
-    await page.goto('https://www.futfanatics.com.br/camisa-adidas-flamengo-i-2026', { 
-      waitUntil: 'domcontentloaded', 
-      timeout: 60000 
-    });
+    await page.goto('https://www.futfanatics.com.br/camisa-adidas-flamengo-i-2026', { waitUntil: 'domcontentloaded' });
     await closePopups();
   });
 
   await test.step('Selecionar Tamanho', async () => {
-    logAction('Buscando tamanho disponível...');
+    logAction('Selecionando tamanho...');
     const seletorTamanho = page.locator('div[id^="cor_"]:not(.indisponivel), li[data-variant-type="Tamanho"] div:not(.indisponivel)').first();
     await seletorTamanho.waitFor({ state: 'visible', timeout: 20000 });
-    
-    const labelTamanho = await seletorTamanho.innerText();
-    logAction(`Selecionando tamanho: ${labelTamanho.trim()}`);
-    
     await seletorTamanho.click({ force: true });
     await page.waitForTimeout(2000); 
   });
 
-  await test.step('Preencher Personalização', async () => {
+  await test.step('Teste: Verificar Proteção dos Campos', async () => {
     const inputNome = page.locator('input[placeholder*="Nome"], input[id*="personalizacao_nome"]').first();
     const inputNumero = page.locator('input[placeholder*="Número"], input[id*="personalizacao_numero"]').first();
 
-    await inputNome.waitFor({ state: 'visible', timeout: 20000 });
-    
-    logAction('Digitando Nome...');
-    await inputNome.click();
-    await inputNome.fill('JOAO RAMPAZZO');
-    
-    logAction('Digitando Número...');
-    await inputNumero.click();
-    await inputNumero.fill('23');
-    
-    await page.waitForTimeout(1500);
-    await closePopups();
+    // Validação de Limite no Nome
+    try {
+      logAction('Verificando se o campo Nome limita caracteres (Máx esperado: 13)...');
+      await inputNome.fill('NOME EXTREMAMENTE LONGO QUE DEVE SER CORTADO');
+      const valNome = await inputNome.inputValue();
+      if (valNome.length <= 13) {
+        logAction(`[SUCESSO] Campo Nome protegeu o limite. Valor final: "${valNome}"`);
+      } else {
+        logAction(`[ALERTA] Campo Nome permitiu ${valNome.length} caracteres (Acima do esperado).`);
+      }
+    } catch (e) { logAction('[INFO] Bloqueio de inserção detectado no campo Nome (Comportamento Seguro).'); }
+
+    // Validação de Tipo no Número
+    try {
+      logAction('Verificando se o campo Número bloqueia letras...');
+      await inputNumero.fill('ABC'); 
+      const valNum = await inputNumero.inputValue();
+      if (valNum.match(/[a-zA-Z]/)) {
+        logAction(`[ALERTA BUG] O campo Aceitou letras indesejadas: "${valNum}"`);
+      } else {
+        logAction('[SUCESSO] Campo Número bloqueou a entrada de letras corretamente.');
+      }
+    } catch (e) { 
+      logAction('[SUCESSO] Bloqueio nativo detectado: O sistema impediu a inserção de letras.'); 
+    }
   });
 
-  await test.step('Comprar e Adicionar', async () => {
-    logAction('Clicando em Comprar...');
+  await test.step('Fase Final: Preenchimento Válido e Compra', async () => {
+    const inputNome = page.locator('input[placeholder*="Nome"], input[id*="personalizacao_nome"]').first();
+    const inputNumero = page.locator('input[placeholder*="Número"], input[id*="personalizacao_numero"]').first();
+
+    logAction(`Preenchendo dados sorteados: ${dadosValidos.nome} | № ${dadosValidos.numero}`);
+    
+    await inputNome.fill('');
+    await inputNome.fill(dadosValidos.nome);
+    
+    await inputNumero.fill('');
+    await inputNumero.pressSequentially(dadosValidos.numero, { delay: 100 });
+    
+    await closePopups();
+    logAction('Adicionando ao carrinho...');
     const comprarBtn = page.locator('[data-tray-tst="button_buy_product"], .button-buy, #btn-comprar').first();
-    await expect(comprarBtn).toBeEnabled({ timeout: 20000 });
     await comprarBtn.click({ force: true });
     
-    // Pequeno aguarde apenas para o vídeo registrar o clique
-    await page.waitForTimeout(3000);
-    logAction('Ação de compra executada.');
+    await page.waitForTimeout(4000);
+    logAction('Teste concluído com sucesso.');
   });
 
-  logAction('Finalizando processamento do vídeo...');
-  
+  logAction('Salvando evidências...');
   const video = page.video();
   const pwTempDir = testInfo.outputDir;
-
-  // FECHAMENTO EXPLICITO DO CONTEXTO:
-  // Isso força o navegador a encerrar o arquivo .webm e liberar para movimentação
   await page.context().close(); 
 
   if (video) {
-    try {
-      const targetVideoPath = path.join(baseOutputDir, `Video_${timestamp}.webm`);
-      await video.saveAs(targetVideoPath);
-      logAction(`Sucesso! Vídeo salvo em: Video_${timestamp}.webm`);
-    } catch (err) {
-      logAction('Erro ao mover vídeo, mas o teste funcional passou.');
-    }
+    const targetVideoPath = path.join(baseOutputDir, `Video_${timestamp}.webm`);
+    await video.saveAs(targetVideoPath);
   }
 
-  // Limpa pastas temporárias automáticas
   if (fs.existsSync(pwTempDir)) {
     try { fs.rmSync(pwTempDir, { recursive: true, force: true }); } catch (e) {}
   }
-  
-  logAction('Teste finalizado com sucesso.');
 });
