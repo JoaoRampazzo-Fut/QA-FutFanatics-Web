@@ -22,9 +22,10 @@ test('Fluxo Dinâmico: Busca e Personalização (SmartHint Pattern)', async ({ p
   test.setTimeout(120000); 
 
   const timestamp = getTimestamp();
-  if (!fs.existsSync(baseOutputDir)) fs.mkdirSync(baseOutputDir, { recursive: true });
+  const outputDir = testInfo.outputDir;
+  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
 
-  const logFile = path.join(baseOutputDir, `Log_${timestamp}.txt`);
+  const logFile = path.join(outputDir, `Log_${timestamp}.txt`);
   const logAction = (msg) => {
     const formattedMsg = `[PERSONALIZA LOG] - ${msg}`;
     console.log(formattedMsg);
@@ -167,5 +168,13 @@ test('Fluxo Dinâmico: Busca e Personalização (SmartHint Pattern)', async ({ p
     logAction('Fim da jornada.');
   });
 
+  const videoPath = await page.video()?.path();
   await page.context().close(); 
+
+  if (videoPath && fs.existsSync(videoPath)) {
+    const newVideoName = `Video_${timestamp}.webm`;
+    const newVideoPath = path.join(outputDir, newVideoName);
+    fs.renameSync(videoPath, newVideoPath);
+    logAction(`Video renomeado para: ${newVideoName}`);
+  }
 });
