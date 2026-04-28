@@ -19,6 +19,7 @@ test.use({
 });
 
 const categorias = [
+  'https://www.futfanatics.com.br/',
   'https://www.futfanatics.com.br/produtos-de-clubes-brasileiros',
   'https://www.futfanatics.com.br/camisas-e-produtos-de-clubes-internacionais',
   'https://www.futfanatics.com.br/calcados',
@@ -43,7 +44,8 @@ test.describe('Validador de Preços Zerados', () => {
     test(`Validar preços em: ${baseUrl}`, async ({ page }) => {
       test.setTimeout(120000); // 2 minutos por página
 
-      const url = `${baseUrl}?order=1`; // Adiciona ordenação por Menor Preço
+      // Adiciona ordenação por Menor Preço apenas se não for a home
+      const url = baseUrl === 'https://www.futfanatics.com.br/' ? baseUrl : `${baseUrl}?order=1`;
       logAction(`Acessando página: ${url}`);
 
       await page.goto(url, { waitUntil: 'domcontentloaded' });
@@ -64,7 +66,9 @@ test.describe('Validador de Preços Zerados', () => {
 
       await page.waitForTimeout(3000); // Aguarda o carregamento dos produtos
 
-      const produtosList = page.locator('div.price span');
+      // Amplia a busca para pegar o padrão .price span (páginas de categoria)
+      // e também .item-price ou destaques que ocorrem na home.
+      const produtosList = page.locator('.price span, .item-price span, .item-price');
       const count = await produtosList.count();
 
       logAction(`Para ${baseUrl}: foram encontrados ${count} produtos com preço renderizado.`);
